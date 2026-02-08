@@ -1,5 +1,7 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, redirect
 from .models import Product
+from django.core.paginator import Paginator
+from django import forms
 
 
 def home(request):
@@ -24,7 +26,27 @@ def product_detail(request, product_id):
 
 def products_list(requests):
     products = Product.objects.all()
+
+    paginator = Paginator(products, 2)
+    page_number = requests.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
     context = {
         'products': products,
+        'page_obj': page_obj,
     }
     return render(requests, 'catalog/products_list.html', context=context)
+
+
+class ProductForm(forms.ModelForm):
+    class Meta:
+        model = Product
+        fields = ['name', 'description', 'image', 'category', 'price']
+
+
+def add_product(request):
+    form = ProductForm(request.POST or None, request.FILES or None)
+    if request.method == "POST" and form.is_valid():
+        form.save()
+        return redirect('/')
+    return render(request, 'catalog/add_product.html', {'form': form})
