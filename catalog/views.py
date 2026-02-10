@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from .models import Product
 from django.core.paginator import Paginator
@@ -14,6 +15,14 @@ def home(request):
         print(f"id: {product.id}, Название: {product.name}, цена за покупку: {product.price}")
 
     return render(request, 'catalog/home.html', {'products': latest_products})
+
+
+def contacts(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        message = request.POST.get('message')
+        return HttpResponse(f"Спасибо, {name}! Ваше сообщение получено.")
+    return render(request, 'catalog/contacts.html')
 
 
 def product_detail(request, product_id):
