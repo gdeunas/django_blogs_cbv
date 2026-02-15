@@ -15,5 +15,6 @@
 </p>
 {% endif%}
 <p>Дата публикации: <b>{{record.created_at|date:"d M Y"}}</b></p>
+<p>Количество просмотров: {{ record.number_of_views }}</p>
 <a href="/blogs/records_list/"><< Назад</a>
 {% endblock %}

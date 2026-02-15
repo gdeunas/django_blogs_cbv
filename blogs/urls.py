@@ -11,5 +11,6 @@ urlpatterns = [
     path('records_list/', RecordListView.as_view(), name='records_list'),
     path('add_record/', RecordCreateView.as_view(), name='add_record'),
     path('record_update/<int:pk>/', RecordUpdateView.as_view(), name='record_update'),
+    path('record/delete/<int:pk>/', RecordDeleteView.as_view(), name='record_delete'),
 
 ]
