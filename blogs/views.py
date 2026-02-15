@@ -4,7 +4,6 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy, reverse
 from blogs.models import Record
 from django import forms
-from django.core.mail import send_mail
 
 
 class RecordListView(ListView):
