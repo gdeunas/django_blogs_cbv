@@ -4,6 +4,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy, reverse
 from blogs.models import Record
 from django import forms
+from django.core.mail import send_mail
 
 
 class RecordListView(ListView):
@@ -24,6 +25,9 @@ class RecordDetailView(DetailView):
         obj = super().get_object(queryset)
         obj.number_of_views += 1
         obj.save()
+
+        if obj.number_of_views == 100:
+            print(f"Статья {obj.title} популярна, набрала 100 просмотров.\nПисьмо отправлено.")
         return obj
 
 
