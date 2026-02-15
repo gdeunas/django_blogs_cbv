@@ -20,7 +20,7 @@ class RecordDetailView(DetailView):
 
 class RecordCreateView(CreateView):
     model = Record
-    fields = ['title', 'content', 'is_published']
+    fields = ['title', 'content', 'is_published', 'image']
     template_name = 'blogs/record_form.html'
     success_url = reverse_lazy('blogs:records_list')
 

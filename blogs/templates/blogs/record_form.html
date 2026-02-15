@@ -1,12 +1,12 @@
-{% extends 'catalog/base.html' %}
+{% extends 'blogs/base.html' %}
 
-{% block title %}Добавить новый продукт{% endblock %}
+{% block title %}Добавить новую запись{% endblock %}
 {% block content %}
-{% include 'catalog/mainmenu.html' %}
-{% include 'catalog/header.html' %}
+{% include 'blogs/mainmenu.html' %}
+{% include 'blogs/header.html' %}
 <form method="post" enctype="multipart/form-data">
       {% csrf_token %}
-<h2>Новый продукт</h2>
+<h2>Новая запись</h2>
 {% for field in form %}
 <div>
     {{ field.label_tag }} <br>
@@ -17,6 +17,6 @@
 </div>
 {% endfor %}
 
-<button type="submit">Добавить продукт</button>
+<button type="submit">Добавить запись</button>
 </form>
 {% endblock %}

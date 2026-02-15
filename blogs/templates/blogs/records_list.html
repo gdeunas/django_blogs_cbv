@@ -7,7 +7,13 @@
 
 <h2>Список записей блога:</h2>
 {% for record in records %}
-<p><b>{{ record.title }}</b></p>
+<a href="{% url 'blogs:record_detail' record.pk %}">
+    <p><b>{{ record.title }}</b></p>
+</a>
+
+{% if record.image %}
+<img class="img-fluid mb-3" src="{{ record.image.url }}" alt="{{ record.title }}" style="max-height: 200px;">
+{% endif %}
 <p>{{ record.content }}</p>
 <p>Дата публикации: {{ record.created_at }}</p>
 {% endfor%}

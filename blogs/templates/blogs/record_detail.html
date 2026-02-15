@@ -5,12 +5,15 @@
 {% block content %}
 {% include 'blogs/mainmenu.html' %}
 {% include 'blogs/header.html' %}
+
 <h2>Детали записи</h2>
 <p>Заголовок: <b>{{record.title}}</b></p>
 <p>Контент: <b>{{record.content}}</b></p>
+{% if record.image %}
 <p>Фотография:
     <img class="img-article-left" src="{{record.image.url}}" alt="{{record.title}}" width="200">
 </p>
+{% endif%}
 <p>Дата публикации: <b>{{record.created_at|date:"d M Y"}}</b></p>
-<a href="/records_list/"><< Назад</a>
+<a href="/blogs/records_list/"><< Назад</a>
 {% endblock %}
